@@ -49,7 +49,7 @@ Public Class Form1
         For Each file In files
             If Directory.Exists(file) Then
                 ListBox1.Items.Add(file) ' フォルダーもリストに追加
-            ElseIf file.ToLower().EndsWith(".jpg") OrElse file.ToLower().EndsWith(".png") OrElse file.ToLower().EndsWith(".bmp") OrElse file.ToLower().EndsWith(".tiff") Then
+            ElseIf file.ToLower().EndsWith(".jpg") OrElse file.ToLower().EndsWith(".jpeg") OrElse file.ToLower().EndsWith(".png") OrElse file.ToLower().EndsWith(".bmp") OrElse file.ToLower().EndsWith(".tiff") Then
                 ListBox1.Items.Add(file)
             End If
         Next
