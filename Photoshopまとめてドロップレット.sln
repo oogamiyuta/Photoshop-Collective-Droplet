@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Photoshopまとめてドロップレット", "Photoshopまとめてドロップレット\Photoshopまとめてドロップレット.vbproj", "{B9FDEB39-7BD7-40DB-A23D-885C1B0A20A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9FDEB39-7BD7-40DB-A23D-885C1B0A20A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FDEB39-7BD7-40DB-A23D-885C1B0A20A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FDEB39-7BD7-40DB-A23D-885C1B0A20A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FDEB39-7BD7-40DB-A23D-885C1B0A20A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7A4E1B3-35A9-4B2B-8AA1-2901214C57BC}
+	EndGlobalSection
+EndGlobal
