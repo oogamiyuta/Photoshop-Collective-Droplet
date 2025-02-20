@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Diagnostics
 Imports System.Speech.Synthesis
+Imports System.Threading.Tasks
+
 Public Class Form1
     Private synthesizer As New SpeechSynthesizer()
     Private settingsFile As String = Path.Combine(Application.UserAppDataPath, "settings.csv")
@@ -49,7 +51,7 @@ Public Class Form1
         For Each file In files
             If Directory.Exists(file) Then
                 ListBox1.Items.Add(file) ' フォルダーもリストに追加
-            ElseIf file.ToLower().EndsWith(".jpg") OrElse file.ToLower().EndsWith(".jpeg") OrElse file.ToLower().EndsWith(".png") OrElse file.ToLower().EndsWith(".bmp") OrElse file.ToLower().EndsWith(".tiff") Then
+            ElseIf IsImageFile(file) Then
                 ListBox1.Items.Add(file)
             End If
         Next
@@ -63,7 +65,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim dropletPath As String = ComboBox1.SelectedItem.ToString()
         Dim folderGroups As New Dictionary(Of String, List(Of String))()
         ListBox2.Items.Clear()
@@ -78,35 +80,37 @@ Public Class Form1
         Next
 
         For Each folder In folderGroups.Keys
-            ExecuteCommand(dropletPath, folderGroups(folder))
+            Await ExecuteCommandAsync(dropletPath, folderGroups(folder))
             ListBox2.Items.Add($"{Now().ToString} 処理が完了しました: {folder}")
-            SpeakNotification($"処理が完了しました: {folder}")
+            SpeakNotification($"処理が完了しました: {Path.GetFileName(folder.TrimEnd("\"c))}")
+            ListBox2.SelectedIndex = ListBox2.Items.Count - 1
         Next
 
         ListBox1.Items.Clear()
     End Sub
 
-    Private Sub ExecuteCommand(dropletPath As String, imageFiles As List(Of String))
+    Private Async Function ExecuteCommandAsync(dropletPath As String, imageFiles As List(Of String)) As Task
         Dim droplet As String = Chr(34) & dropletPath & Chr(34)
-        Dim command As String
-        For Each file In imageFiles
-            command &= " " & Chr(34) & file & Chr(34)
-        Next
-
-        command = command.TrimStart()
+        Dim command As String = String.Join(" ", imageFiles.Select(Function(file) Chr(34) & file & Chr(34)))
 
         Dim process As New Process()
         process.StartInfo.FileName = droplet
         process.StartInfo.Arguments = command
         process.StartInfo.UseShellExecute = False
         process.StartInfo.CreateNoWindow = True
-        process.Start()
-        process.WaitForExit()
-    End Sub
+
+        Try
+            process.Start()
+            Await Task.Run(Sub() process.WaitForExit())
+        Catch ex As Exception
+            MessageBox.Show("コマンド実行中にエラーが発生しました。", "エラー")
+        End Try
+    End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         ListBox1.Items.Clear()
     End Sub
+
     ' 音声通知を生成して再生
     Private Sub SpeakNotification(message As String)
         Try
@@ -116,4 +120,15 @@ Public Class Form1
         End Try
     End Sub
 
+    ' 画像ファイルかどうかを判定
+    Private Function IsImageFile(file As String) As Boolean
+        Dim extensions As String() = {".jpg", ".jpeg", ".png", ".bmp", ".tiff"}
+        Return extensions.Contains(Path.GetExtension(file).ToLower())
+    End Function
+
+    Private Sub Form1_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
+        ListBox2.Width = Me.Width
+        ListBox1.Height = Me.Height - 136
+
+    End Sub
 End Class

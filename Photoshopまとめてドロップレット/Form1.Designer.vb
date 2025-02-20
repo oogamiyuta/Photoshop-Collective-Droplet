@@ -74,6 +74,7 @@ Partial Class Form1
         ' ListBox2
         ' 
         ListBox2.FormattingEnabled = True
+        ListBox2.HorizontalScrollbar = True
         ListBox2.ItemHeight = 15
         ListBox2.Location = New Point(0, 45)
         ListBox2.Name = "ListBox2"
