@@ -128,7 +128,7 @@ Public Class Form1
 
     Private Sub Form1_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
         ListBox2.Width = Me.Width
-        ListBox1.Height = Me.Height - 136
+        ListBox1.Height = Me.Height - 184
 
     End Sub
 End Class
