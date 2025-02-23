@@ -48,7 +48,7 @@ Partial Class Form1
         ListBox1.FormattingEnabled = True
         ListBox1.HorizontalScrollbar = True
         ListBox1.ItemHeight = 15
-        ListBox1.Location = New Point(0, 97)
+        ListBox1.Location = New Point(0, 145)
         ListBox1.Name = "ListBox1"
         ListBox1.Size = New Size(800, 379)
         ListBox1.TabIndex = 1
@@ -78,7 +78,7 @@ Partial Class Form1
         ListBox2.ItemHeight = 15
         ListBox2.Location = New Point(0, 45)
         ListBox2.Name = "ListBox2"
-        ListBox2.Size = New Size(800, 34)
+        ListBox2.Size = New Size(800, 79)
         ListBox2.TabIndex = 4
         ' 
         ' BtnAddPath
@@ -111,7 +111,7 @@ Partial Class Form1
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(2, 82)
+        Label2.Location = New Point(2, 127)
         Label2.Name = "Label2"
         Label2.Size = New Size(204, 15)
         Label2.TabIndex = 8
@@ -121,7 +121,7 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 476)
+        ClientSize = New Size(800, 524)
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(BtnRemovePath)
